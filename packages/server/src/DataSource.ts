@@ -8,11 +8,13 @@ import { getUserHome } from './utils'
 let appDataSource: DataSource
 
 export const init = async (): Promise<void> => {
-    const homePath = path.join(getUserHome(), '.flowise')
-
     appDataSource = new DataSource({
-        type: 'sqlite',
-        database: path.resolve(homePath, 'database.sqlite'),
+        type: 'postgres',
+        host: 'localhost',
+        port: 5432,
+        username: 'root',
+        password: 'password!',
+        database: 'fastapi_db',
         synchronize: true,
         entities: [ChatFlow, ChatMessage],
         migrations: []
